@@ -18,23 +18,21 @@ accordion.forEach(item => {
 });
 
 const switchBtn = document.querySelector('.switch input');
-const priceBasic = document.querySelectorAll('.plans__price_basic');
-const pricePro = document.querySelectorAll('.plans__price_pro');
+const priceBasic = document.querySelector('.plans__price_basic');
+const pricePro = document.querySelector('.plans__price_pro');
+const plansMonthly = document.getElementById('plans-monthly');
+const plansAnnual = document.getElementById('plans-annual');
 
 switchBtn.addEventListener('change', function() {
   if (this.checked) {
-    priceBasic.forEach(function(elem) {
-      elem.textContent = '7.99$';
-    });
-    pricePro.forEach(function(elem) {
-      elem.textContent = '31.99$';
-    });
+    priceBasic.textContent = '7.99$';
+    pricePro.textContent = '31.99$';
+    plansMonthly.classList.remove('plans__billing_active');
+    plansAnnual.classList.add('plans__billing_active');
   } else {
-    priceBasic.forEach(function(elem) {
-      elem.textContent = '9.99$';
-    });
-    pricePro.forEach(function(elem) {
-      elem.textContent = '39.99$';
-    });
+    priceBasic.textContent = '9.99$';
+    pricePro.textContent = '39.99$';
+    plansMonthly.classList.add('plans__billing_active');
+    plansAnnual.classList.remove('plans__billing_active');
   }
 });
