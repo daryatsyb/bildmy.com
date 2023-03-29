@@ -1,6 +1,31 @@
 /*jshint esversion: 6 */
 
-var accordion = document.querySelectorAll('.accordions__head');
+const burger = document.querySelector('.header__hamburger');
+const mobileMenu = document.querySelector('.header__menu');
+const menuItem = document.querySelectorAll('.header__menu__item');
+
+
+burger.addEventListener('click', () => {
+  burger.classList.toggle('header__hamburger_active');
+  mobileMenu.classList.toggle('header__menu_active');
+});
+
+menuItem.forEach(item => {
+  item.addEventListener('click', () => {
+    burger.classList.toggle('header__hamburger_active');
+    mobileMenu.classList.toggle('header__menu_active');
+  });
+});
+
+// При клике вне меню и бургера, меню закрывается
+document.addEventListener('click', function(event) {
+  if (!mobileMenu.contains(event.target) && !burger.contains(event.target)) {
+    mobileMenu.classList.remove('header__menu_active');
+    burger.classList.remove('header__hamburger_active');
+  }
+});
+
+const accordion = document.querySelectorAll('.accordions__head');
 
 accordion.forEach(item => {
   item.addEventListener('click', () => {
@@ -9,12 +34,10 @@ accordion.forEach(item => {
   });
 });
 
-var accordion = document.querySelectorAll('.switch');
+const btnSwitch = document.querySelector('.switch');
 
-accordion.forEach(item => {
-  item.addEventListener('click', () => {
-    item.classList.toggle('switch_active');
-  });
+btnSwitch.addEventListener('click', () => {
+  btnSwitch.classList.toggle('switch_active');
 });
 
 const switchBtn = document.querySelector('.switch input');
@@ -36,3 +59,5 @@ switchBtn.addEventListener('change', function() {
     plansAnnual.classList.remove('plans__billing_active');
   }
 });
+
+
